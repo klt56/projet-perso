@@ -1,0 +1,17 @@
+<p><font color="green">Succès
+
+<% if params[:session_id].present? %>
+  <% @session = Stripe::Checkout::Session.retrieve(params[:session_id]) %>
+  <% @payment_intent = Stripe::PaymentIntent.retrieve(@session.payment_intent) %>
+
+  Payement amount: 
+  <%= number_to_currency @payment_intent.amount_received / 100.0 %>.</p>
+  Payment status: 
+  <%= @payment_intent.status %>
+  <br>
+  <%= debug @session %>
+  <%= debug @payment_intent %>
+<% end %>
+
+Nous avons bien reçu votre paiement de <%= number_to_currency(@payment_intent.amount_received / 100.0, unit: "€", separator: ",", delimiter: "", format: "%n %u") %>.
+Le statut de votre paiement est : <%= @payment_intent.status %>.</p>

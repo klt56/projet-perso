@@ -1,0 +1,32 @@
+<center><h1>e_shop</h1>
+<br>
+<br>
+ <ul>
+ 
+      <% if user_signed_in? %>
+        <li>
+              <i><%= link_to "Se déconnecter", destroy_user_session_path, style: "color:white", method: :get %></i>
+        </li>
+
+        <li>
+          Voici ton email : <%= current_user.email %>
+        </li>
+
+        <li>
+          <%= link_to "Edit email / password", edit_user_registration_path %>
+        </li>
+
+      <% else %>
+        <li>    
+          <%= link_to "Sign in", new_user_session_path %>
+        </li>
+
+        <li>
+          <%= link_to "Sign up", new_user_registration_path %>
+        </li>
+
+      <% end %>
+</center>
+
+
+
