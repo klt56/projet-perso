@@ -1,17 +1,26 @@
-<div id="<%= dom_id product %>">
-  <p>
-    <strong>Name:</strong>
-    <%= product.name %>
-  </p>
-
-  <p>
-    <strong>Price:</strong>
-    <%= product.price %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= product.description %>
-  </p>
-
+<center>
+<div class="col" ontouchstart="this.classList.toggle('hover');">
+        <div class="container">
+          <div class="front" style="background-image: url(https://unsplash.it/503/503/)">
+            <div class="inner">
+              <p><%= product.name %></p>
+              <span><%= product.price  %></span>
+            </div>
+          </div>
+          <div class="back">
+            <div class="inner">
+              <p><%= product.description %></p>
+            </div>
+          </div>
+          <br>
+          <div class="btn-contain">
+<center> <%= button_to "Acheter maintenant!", checkout_create_path, remote: true, data: { disable_with: "validating..."} %></center>
+   <%= button_to "Retirer du panier", remove_from_cart_path(product), method: :delete %>
+    <%= button_to "Ajouter au panier", add_to_cart_path(product) %>
+  <div class="btn-particles">
+  </div>
 </div>
+        </div>
+      </div>
+</center>
+ 

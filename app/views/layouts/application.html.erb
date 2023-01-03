@@ -10,32 +10,57 @@
     <%= javascript_importmap_tags %>
   <%=stylesheet_link_tag("application.css") %>
    <%=stylesheet_link_tag("style.css") %>
+   <%=stylesheet_link_tag("Room.css") %>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
+  <style>
+      <%= ".msg-#{current_user&.id}" %> {
+      background-color: #007bff !important;
+      padding: 10px;
+      }
+      <%= ".cont-#{current_user&.id}" %> {
+      display: flex;
+      justify-content: flex-end
+      }
+    </style>
+
 </head>
-  <body>
+
+  <body text= "black" style="background-image: url('https://static.vecteezy.com/ti/vecteur-libre/p1/3037585-abstrait-fond-d-ecran-et-fond-vecteur-vectoriel.jpg');width: 100vw; height: 100vh">
+     
+     <center>
       <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= link_to "Products", products_path %>
-    <%= link_to "Github", "https://github.com/yshmarov/shoplify", target: "_blank" %>
+    <%= link_to "Products_", products_path %>
+    <%= link_to "Github_", "", target: "_blank" %>
     <% if current_user %>
       <%= link_to current_user.email, edit_user_registration_path %>
-      <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+      <%= link_to "_déconnection_", destroy_user_session_path, method: :delete %>
       <%= current_user.stripe_customer_id %>
     <% else %>
-      <%= link_to "Log in", new_user_session_path %>
-      <%= link_to "Register", new_user_registration_path %>
+      <%= link_to "-Connection_", new_user_session_path %>
+      <%= link_to "S'inscrire", new_user_registration_path %>
     <% end %>
+    </center>
     <hr>
-    <h1>Shopping cart</h1>
+
+    <h1><p><font color="white"><i>Shopping cart</i></p></h1>
     <% @cart.each do |product| %>
       <%= product.name %>
       <br>
          <% end %>
          <% if @cart.present? %>
-    <%= button_to "Buy now!", checkout_create_path, remote: true, data: { disable_with: "validating..."} %>
+    <%= button_to "Acheter maintenant !", checkout_create_path, remote: true, data: { disable_with: "validating..."} %>
           <% end %>
     <hr>
+    <%= render "layouts/navbar"%>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
         <%= yield %>
   </body>
   
@@ -53,11 +78,14 @@
       <li class="menu__group">
         <i><%= link_to "s'inscrire", new_user_registration_path, method: :get, class:"menu__link r-link" %></i>
       </li>
+       <li class="menu__group">
+        <i><%= link_to "test", rooms_path, method: :get, class:"menu__link r-link" %></i>
+      </li>
       <li class="menu__group">
         <i><%= link_to "Déconnection", destroy_user_session_path, method: :get, class:"menu__link r-link" %></i>
      </li>
       <li class="menu__group">
-        <i><%= link_to "Test",  new_product_path, method: :get, class:"menu__link r-link" %></i>
+        <i><%= link_to "Vos articles",  new_product_path, method: :get, class:"menu__link r-link" %></i>
       </li>
     </ul>
   </nav>

@@ -1,11 +1,11 @@
-<center><h1>e_shop</h1>
+<center><h1><b><p><font color="grey">e_shop</p></b></h1>
 <br>
 <br>
  <ul>
  
       <% if user_signed_in? %>
         <li>
-              <i><%= link_to "Se déconnecter", destroy_user_session_path, style: "color:white", method: :get %></i>
+              <i><%= link_to "Se déconnecter", destroy_user_session_path, style: "color:black", method: :get %></i>
         </li>
 
         <li>
@@ -26,6 +26,8 @@
         </li>
 
       <% end %>
+      
+
 </center>
 
 
