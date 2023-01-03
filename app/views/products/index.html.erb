@@ -22,20 +22,20 @@
         <td><%= product.stripe_price_id %></td>
         <td>
           <% if @cart.include?(product) %>
-            <%= button_to "Remove from cart", remove_from_cart_path(product), method: :delete %>
+            <%= button_to "Retirer du panier", remove_from_cart_path(product), method: :delete %>
           <% else %>
-            <%= button_to "Add to cart", add_to_cart_path(product) %>
+            <%= button_to "Ajouter au panier", add_to_cart_path(product) %>
           <% end %>
         </td>
         
 
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
+        <td><%= link_to 'Voir cette article_', product %></td>
+        <td><%= link_to 'Edit_', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'Crée vos articles', new_product_path %>
 <hr>

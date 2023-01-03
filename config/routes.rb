@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
+  get 'page/home'
   resources :products
   get 'static_pages/index'
   get 'static_pages/secret'
  
+  
+  resources :rooms
+   get "pages/home"
 
   root "static_pages#index"
   devise_for :users
@@ -23,6 +28,15 @@ Rails.application.routes.draw do
     
     post "products/add_to_cart/:id", to: "products#add_to_cart", as: "add_to_cart"
     delete "products/remove_from_cart/:id", to: "products#remove_from_cart", as: "remove_from_cart"
+
+    devise_scope :user do
+      # Redirests signing out users back to sign-in
+      get "users", to: "devise/sessions#new"
+
+
+     
+    end
+    get 'user/:id', to: 'users#show', as: 'user'
   end
   # Defines the root path route ("/")
   # root "articles#index"
